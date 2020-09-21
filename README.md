@@ -7,6 +7,7 @@ pipenv shell
 pipenv install
 pipenv install #and more...
 
+aws configure
 ``` 
 # PYTHON_SAM_TEMPLATE
 ## debug
