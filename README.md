@@ -15,24 +15,36 @@ PYTHONPATH=./functions  python ./functions/app/lambda_handler.py
 ```
 ## build
 ### third party library install.
-make build-layer
+```
+$ make build-layer
+```
 
 ### sam build 
-make build 
+```
+$ make build 
+```
 
 ### sam test 
-make test 
+```
+$ make test 
+```
 
 
 ### sam package 
-make package 
+```
+$ make package 
+```
 - please create s3 bucket before.
 
 ### sam deploy 
-make deploy 
+```
+$ make deploy 
+```
 
 ### all process. 
-make all
+```
+$ make all
+```
 * make build
 * make package
 * make deploy
