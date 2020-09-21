@@ -1,0 +1,54 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  app
+  
+  Sample SAM Template for app
+
+# More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
+Globals:
+  Function:
+    Timeout: 5
+
+Resources:
+  BinaryLayer:
+    Type: AWS::Serverless::LayerVersion
+    Properties:
+      LayerName: binary-layer
+      ContentUri: layers/binary
+  ThirdPartyLibraryLayer:
+    Type: AWS::Serverless::LayerVersion
+    Properties:
+      LayerName: third-party-library-layer
+      ContentUri: layers/dist/python.zip
+      CompatibleRuntimes:
+        - python3.7
+  AppNameFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Description: app description.
+      FunctionName: python_sam_template_function
+      CodeUri: functions/
+      Handler: app/lambda_handler.lambda_handler
+      Runtime: python3.7
+      MemorySize: 256
+      Timeout: 60
+      Layers:
+        - !Ref BinaryLayer
+        - !Ref ThirdPartyLibraryLayer
+      Events:
+        Timer:
+          Type: Schedule
+          Properties:
+            Enabled: true
+            Schedule: cron(0/30 * * * ? *)
+      Environment:
+        Variables:
+          APP_ENV: "production"
+Outputs:
+  AppNameFunction:
+    Description: "First Lambda Function ARN"
+    Value: !GetAtt AppNameFunction.Arn
+  AppNameFunctionIamRole:
+    Description: "Implicit IAM Role created for Hello World function"
+    Value: !GetAtt AppNameFunctionRole.Arn
