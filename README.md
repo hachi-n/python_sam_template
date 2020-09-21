@@ -1,13 +1,13 @@
 # PYTHON_SAM_TEMPLATE
 ## SETUP
 ```
-pyenv install 3.7.9
-pip install pipenv
-pipenv shell
-pipenv install
-pipenv install #and more...
-
-aws configure
+$ pyenv install 3.7.9
+$ pip install pipenv
+$ pipenv shell
+$ pipenv install
+$ pipenv install #and more...
+$ 
+$ aws configure
 ``` 
 # PYTHON_SAM_TEMPLATE
 ## debug
